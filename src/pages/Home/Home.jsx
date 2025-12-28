@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link ,Routes} from 'react-router-dom';
 import Nav from '../../components/layout/Nav/Nav';
 import Homepage from '../../components/H/Hero/Hero';
 import Teams from '../Teams/Teams';
+import MatchPage from '../MatchPage';
 
 export default function Home() {
   return(
@@ -13,6 +14,7 @@ export default function Home() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/teams" element={<Teams />} />
+        <Route path="/match" element={<MatchPage />} />
       </Routes>
     </div>
   </div>

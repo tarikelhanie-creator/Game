@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TeamForm from "../../components/Tm/TeamForm";
 import TeamPreview from "../../components/Tm/TeamPreview";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useGame } from "../../context/GameContext";
 import { aiTeams } from "../../data/teams";
 
@@ -22,7 +22,7 @@ function TeamPage() {
       aiTeams[Math.floor(Math.random() * aiTeams.length)];
 
     setOpponent(randomOpponent);
-    navigate("/tournament");
+    navigate("/match");
   };
 
   return (
@@ -45,17 +45,19 @@ function TeamPage() {
     <TeamPreview team={team} />
 
     {/* Start button */}
-    <button
-      onClick={startTournament}
-      disabled={!team.name}
-      className={`mt-6 px-8 py-4 rounded-full font-extrabold uppercase text-white border-4 border-green-900 shadow-[0_6px_0_#14532d] transition-all ${
-        team.name
-          ? "bg-green-500 hover:bg-green-400 active:translate-y-1 active:shadow-none"
-          : "bg-gray-400 cursor-not-allowed border-gray-600 shadow-none"
+    <Link to="/match">
+      <button
+        onClick={startTournament}
+        disabled={!team.name}
+        className={`mt-6 px-8 py-4 rounded-full font-extrabold uppercase text-white border-4 border-green-900 shadow-[0_6px_0_#14532d] transition-all ${
+          team.name
+            ? "bg-green-500 hover:bg-green-400 active:translate-y-1 active:shadow-none"
+            : "bg-gray-400 cursor-not-allowed border-gray-600 shadow-none"
       }`}
-    >
-      Start Tournament
-    </button>
+      >
+        Start Tournament
+      </button>
+    </Link>
   </div>
 </div>
   );
