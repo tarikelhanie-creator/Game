@@ -2,6 +2,20 @@ import React, { useState } from "react";
 import TeamForm from "../../components/Tm/TeamForm";
 import TeamPreview from "../../components/Tm/TeamPreview";
 import { useNavigate } from "react-router-dom";
+import { useGame } from "../context/GameContext";
+
+const { setPlayerTeam, setOpponent } = useGame();
+
+const startTournament = () => {
+  setPlayerTeam(team);
+
+  const randomOpponent =
+    aiTeams[Math.floor(Math.random() * aiTeams.length)];
+
+  setOpponent(randomOpponent);
+  navigate("/match");
+}
+
 
 function TeamPage() {
   const [team, setTeam] = useState({
