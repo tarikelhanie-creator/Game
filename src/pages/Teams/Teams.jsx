@@ -2,20 +2,8 @@ import React, { useState } from "react";
 import TeamForm from "../../components/Tm/TeamForm";
 import TeamPreview from "../../components/Tm/TeamPreview";
 import { useNavigate } from "react-router-dom";
-import { useGame } from "../context/GameContext";
-
-const { setPlayerTeam, setOpponent } = useGame();
-
-const startTournament = () => {
-  setPlayerTeam(team);
-
-  const randomOpponent =
-    aiTeams[Math.floor(Math.random() * aiTeams.length)];
-
-  setOpponent(randomOpponent);
-  navigate("/match");
-}
-
+import { useGame } from "../../context/GameContext";
+import { aiTeams } from "../../data/teams";
 
 function TeamPage() {
   const [team, setTeam] = useState({
@@ -25,10 +13,16 @@ function TeamPage() {
   });
 
   const navigate = useNavigate();
+  const { setPlayerTeam, setOpponent } = useGame();
 
   const startTournament = () => {
-    // Save to context or state management here if needed
-    navigate("/tournament"); // go to Tournament page
+    setPlayerTeam(team);
+
+    const randomOpponent =
+      aiTeams[Math.floor(Math.random() * aiTeams.length)];
+
+    setOpponent(randomOpponent);
+    navigate("/tournament");
   };
 
   return (
