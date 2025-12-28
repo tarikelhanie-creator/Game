@@ -2,23 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/GameContext";
 import { aiTeams } from "../data/teams";
-
-// Convert skill string to numeric value
-function getSkillValue(skill) {
-  const skillMap = {
-    easy: 70,
-    normal: 80,
-    hard: 90,
-  };
-  return skillMap[skill] || 80;
-}
-
-// TEMP mini-game result (we replace later)
-function playMiniGame(playerSkill, aiSkill) {
-  const playerScore = playerSkill + Math.random() * 20;
-  const aiScore = aiSkill + Math.random() * 20;
-  return playerScore > aiScore;
-}
+import PenaltyGame from "../components/minigames/PenaltyGame";
 
 function MatchPage() {
   const {
@@ -31,7 +15,9 @@ function MatchPage() {
   } = useGame();
 
   const navigate = useNavigate();
-  const [result, setResult] = useState(null);
+
+  const [result, setResult] = useState(null); // "win" | "lose" | null
+  const [showGame, setShowGame] = useState(false);
 
   if (!playerTeam || !opponent) {
     return (
@@ -43,15 +29,9 @@ function MatchPage() {
 
   const roundNames = ["Quarter Final", "Semi Final", "Final"];
 
-  const handlePlayMatch = () => {
-    const playerSkillValue = getSkillValue(playerTeam.skill);
-    const win = playMiniGame(playerSkillValue, opponent.skill);
-    setResult(win ? "win" : "lose");
-  };
-
   const handleContinue = () => {
     if (result === "lose") {
-      navigate("/"); // game over → home
+      navigate("/");
       return;
     }
 
@@ -61,10 +41,10 @@ function MatchPage() {
       return;
     }
 
-    // Next round
+    // Go to next round
     setCurrentRound((prev) => prev + 1);
 
-    // Pick new opponent (simple random for now)
+    // Pick new opponent
     const nextOpponent =
       aiTeams[Math.floor(Math.random() * aiTeams.length)];
 
@@ -83,15 +63,29 @@ function MatchPage() {
           {playerTeam.name} vs {opponent.name}
         </p>
 
-        {result === null && (
+        {/* START MATCH */}
+        {!showGame && result === null && (
           <button
-            onClick={handlePlayMatch}
+            onClick={() => setShowGame(true)}
             className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800"
           >
-            Play Match
+            Start Penalty Shootout
           </button>
         )}
 
+        {/* MINI GAME */}
+        {showGame && result === null && (
+          <PenaltyGame
+            playerTeam={playerTeam}
+            opponent={opponent}
+            onFinish={(playerScore, aiScore) => {
+              setResult(playerScore > aiScore ? "win" : "lose");
+              setShowGame(false);
+            }}
+          />
+        )}
+
+        {/* WIN */}
         {result === "win" && (
           <>
             <p className="text-green-600 font-bold mt-4">
@@ -106,6 +100,7 @@ function MatchPage() {
           </>
         )}
 
+        {/* LOSE */}
         {result === "lose" && (
           <>
             <p className="text-red-600 font-bold mt-4">

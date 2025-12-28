@@ -4,6 +4,7 @@ import Nav from '../../components/layout/Nav/Nav';
 import Homepage from '../../components/H/Hero/Hero';
 import Teams from '../Teams/Teams';
 import MatchPage from '../MatchPage';
+import WinPage from '../WinPage';
 
 export default function Home() {
   return(
@@ -15,6 +16,7 @@ export default function Home() {
         <Route path="/" element={<Homepage />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="/match" element={<MatchPage />} />
+        <Route path="/win" element={<WinPage />} />
       </Routes>
     </div>
   </div>
