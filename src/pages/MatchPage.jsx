@@ -44,12 +44,15 @@ function MatchPage() {
     // Go to next round
     setCurrentRound((prev) => prev + 1);
 
-    // Pick new opponent
-    const nextOpponent =
-      aiTeams[Math.floor(Math.random() * aiTeams.length)];
+    // Pick new opponent (avoid same opponent)
+    let nextOpponent;
+    do {
+      nextOpponent = aiTeams[Math.floor(Math.random() * aiTeams.length)];
+    } while (nextOpponent.name === opponent.name && aiTeams.length > 1);
 
     setOpponent(nextOpponent);
     setResult(null);
+    setShowGame(false); // Reset game state for next round
   };
 
   return (
