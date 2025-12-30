@@ -70,7 +70,7 @@ function MatchPage() {
         {!showGame && result === null && (
           <button
             onClick={() => setShowGame(true)}
-            className="bg-green-700 text-white px-6 py-3 rounded font-bold hover:bg-green-800"
+            className="bg-green-700 text-white px-6 py-3 rounded font-bold  active:translate-y-1 active:shadow-none"
           >
             Start Penalty Shootout
           </button>
@@ -96,7 +96,7 @@ function MatchPage() {
             </p>
             <button
               onClick={handleContinue}
-              className="mt-4 bg-green-700 text-white px-6 py-3 rounded hover:bg-green-800"
+              className="mt-4 bg-green-700 text-white px-6 py-3 rounded hover:bg-green-800 active:translate-y-1 active:shadow-none"
             >
               Continue
             </button>
@@ -106,12 +106,12 @@ function MatchPage() {
         {/* LOSE */}
         {result === "lose" && (
           <>
-            <p className="text-red-600 font-bold mt-4">
+            <p className="text-red-600 font-bold mt-4 active:translate-y-1 active:shadow-none">
               You lost the match 💔
             </p>
             <button
               onClick={handleContinue}
-              className="mt-4 bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700"
+              className="mt-4 bg-red-600 text-white px-6 py-3 rounded hover:bg-red-700 active:translate-y-1 active:shadow-none"
             >
               Back to Home
             </button>

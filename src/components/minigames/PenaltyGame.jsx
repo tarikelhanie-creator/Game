@@ -281,7 +281,7 @@ function PenaltyGame({ playerTeam, opponent, onFinish }) {
               className={`px-6 py-3 rounded-lg font-semibold transition-all ${
                 isProcessing
                   ? "bg-gray-400 cursor-not-allowed text-white"
-                  : "bg-green-600 text-white hover:bg-green-700 active:scale-95 shadow-md"
+                  : "px-6 py-3 bg-green-400 text-white font-extrabold uppercase rounded-full  border-4 border-green-900  shadow-[0_6px_0_#14532d] hover:bg-green-300  active:translate-y-1 active:shadow-none  transition-all"
               }`}
             >
               {direction.charAt(0).toUpperCase() + direction.slice(1)}
