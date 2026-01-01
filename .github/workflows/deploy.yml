@@ -1,5 +1,9 @@
 name: Deploy React Game
 
+permissions:
+  contents: write
+  pages: write
+
 on:
   push:
     branches:
@@ -16,23 +20,36 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: '22.x'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run tests
-        run: npm run test
+      - name: Run tests (if present)
+        run: npm run test --if-present
 
       - name: Build project
         run: npm run build
 
+      - name: Commit built files to 'deploy' branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin
+          git checkout --orphan deploy || git checkout deploy
+          git rm -rf .
+          cp -R dist/. .
+          git add -A
+          git commit -m "Deploy from CI: $GITHUB_SHA" || echo "No changes to commit"
+          git push origin deploy --force
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
-        
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
