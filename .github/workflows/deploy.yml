@@ -6,7 +6,7 @@ name: Build and deploy to GitHub Pages
 
 # Ensure the workflow has the necessary permissions for Pages/Git operations
 permissions:
-  contents: read
+  contents: write
   pages: write
 
 jobs:
