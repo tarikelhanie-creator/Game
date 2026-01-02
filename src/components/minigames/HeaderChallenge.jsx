@@ -97,7 +97,7 @@ function ReflexGridGame({ onFinish }) {
             {activeIndex === index && !isOver && (
               <button
                 onClick={() => handleClick(index)}
-                className="px-4 py-2 bg-yellow-400 text-purple-800 font-bold rounded-full border-4 border-purple-900 shadow-[0_6px_0_#6b21a8] hover:bg-yellow-300 active:translate-y-1 active:shadow-none animate-bounce"
+                className="px-4 py-2 bg-green-500 text-white font-extrabold uppercase rounded-full border-4 border-green-900 shadow-[0_6px_0_#14532d] hover:bg-green-400 active:translate-y-1 active:shadow-none transition-all duration-200 min-w-[80px]"
               >
                 CLICK
               </button>

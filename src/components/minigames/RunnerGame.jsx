@@ -79,16 +79,12 @@ function SpeedPass({ playerTeam, opponent, onFinish }) {
           className={`h-full bg-gradient-to-r from-green-400 to-green-600 shadow-lg transition-all duration-75 ${Math.abs(zonePos - 50) < 8 ? 'ring-4 ring-yellow-400' : ''}`}
           style={{ width: '12px', left: `${zonePos}%`, transform: 'translateX(-50%)', position: 'relative' }}
         />
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-20 h-20 bg-blue-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center text-lg font-bold">
-            👤
-          </div>
-        </div>
+        
       </div>
 
       <button
         onClick={handlePass}
-        className="bg-green-600 hover:bg-green-700 text-white text-xl font-bold px-12 py-6 rounded-full shadow-2xl hover:shadow-3xl hover:scale-105 active:scale-95 transition-all duration-200 border-4 border-green-800"
+        className="px-12 py-6 bg-green-500 text-white font-extrabold uppercase rounded-full border-4 border-green-900 shadow-[0_6px_0_#14532d] hover:bg-green-400 active:translate-y-1 active:shadow-none transition-all duration-200 min-w-[80px]"
       >
         PASS ⚽
       </button>

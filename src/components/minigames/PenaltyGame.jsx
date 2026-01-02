@@ -133,12 +133,7 @@ function PenaltyGame({ playerTeam, opponent, onFinish }) {
           </div>
         )}
 
-        {/* Static Goal Elements */}
-        <div className="absolute inset-0 flex items-end justify-around p-4">
-          <div className="w-20 h-20 bg-white/30 rounded-full border-4 border-white/50" />
-          <div className="w-20 h-20 bg-white/30 rounded-full border-4 border-white/50" />
-          <div className="w-20 h-20 bg-white/30 rounded-full border-4 border-white/50" />
-        </div>
+        
 
         {/* Net pattern */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCAxTDYgMU00IDNINm00IDNMNiA3TTQgNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC4yIi8+PC9zdmc+')] opacity-30" />
