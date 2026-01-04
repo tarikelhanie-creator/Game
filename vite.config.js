@@ -11,5 +11,10 @@ export default defineConfig({
       },
     }),tailwindcss()
   ],
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./src/setupTests.js",
+  },
   base: '/Game/',
 })
